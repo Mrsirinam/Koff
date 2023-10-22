@@ -18,23 +18,26 @@
 
 <body>
 	<header class="header">
-		<div class="container header__contaoner">
+		<div class="container header__container">
 			<a class="header__link-logo" href="">
 				<img class="header__logo" src="/img/logo.svg" alt="Логотип мебельного маркета Koff">
 			</a>
+
 			<form action="/api/product" class="header__search">
 				<input type="search" class="header__input" name="search" placeholder="Введите запрос">
+
 				<button class="header__btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						viewBox="0 0 16 16" fill="none">
 						<path
 							d="M7.66671 13.9999C11.1645 13.9999 14 11.1644 14 7.66659C14 4.16878 11.1645 1.33325 7.66671 1.33325C4.1689 1.33325 1.33337 4.16878 1.33337 7.66659C1.33337 11.1644 4.1689 13.9999 7.66671 13.9999Z"
-							stroke="#1C1C1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-						<path d="M14.6667 14.6666L13.3334 13.3333" stroke="#1C1C1C" stroke-width="1.5" stroke-linecap="round"
+							stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M14.6667 14.6666L13.3334 13.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
 							stroke-linejoin="round" />
 					</svg></button>
 			</form>
-			<div class="header__controll">
-				<a href="/favorite">
+
+			<div class="header__control">
+				<a href="/favorite" class="header__link">
 					<span class="header__link-text">Избранное</span>
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
 						<path
@@ -409,25 +412,25 @@
 						<input type="tel" class="form-order__input" name="phone" placeholder="Телефон">
 						<input type="email" class="form-order__input" name="email" placeholder="E-mail">
 						<input type="text" class="form-order__input" name="address" placeholder="Адрес доставки">
-						<textarea class="form-order-textarea" name="comments" placeholder="Комментарий к заказу"></textarea>
+						<textarea class="form-order__textarea" name="comments" placeholder="Комментарий к заказу"></textarea>
 					</fieldset>
 
 					<fieldset class="form-order__fieldset form-order__fieldset_radio">
 						<legend class="form-order__legend">Доставка</legend>
-						<label class="form-order-label radio">
+						<label class="form-order__label radio">
 							<input type="radio" class="radio__input" name="deliveryType" value="delivery">Доставка
 						</label>
-						<label class="form-order-label radio">
+						<label class="form-order__label radio">
 							<input type="radio" class="radio__input" name="deliveryType" value="pickup">Самовывоз
 						</label>
 					</fieldset>
 
 					<fieldset class="form-order__fieldset form-order__fieldset_radio">
 						<legend class="form-order__legend">Оплата</legend>
-						<label class="form-order-label radio">
+						<label class="form-order__label radio">
 							<input type="radio" class="radio__input" name="paymentType" value="card">Картой при получении
 						</label>
-						<label class="form-order-label radio">
+						<label class="form-order__label radio">
 							<input type="radio" class="radio__input" name="paymentType" value="cash">Наличными при получении
 						</label>
 
