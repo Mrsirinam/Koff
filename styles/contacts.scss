@@ -1,10 +1,12 @@
 .contacts {
-	&__phone {
-	}
-	&__list {
-	}
-	&__item {
-	}
-	&__link {
-	}
+  &__phone {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 8px;
+  }
 }
