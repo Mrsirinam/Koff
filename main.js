@@ -1,7 +1,9 @@
 import "normalize.css";
 import "./style.scss";
-import Swiper from "swiper";
 import Navigo from "navigo";
+import { Header } from "./modules/Header/Header";
+import { Main } from "./modules/Main/Main";
+import { Footer } from "./modules/Footer/Footer";
 
 const productSlider = () => {
   Promise.all([
@@ -9,7 +11,7 @@ const productSlider = () => {
     import("swiper"),
     import("swiper/css"),
   ]).then(([{ Navigation, Thumbs }, Swiper]) => {
-    const swiperThumbnails = new Swiper(".product__slider-thumbnails", {
+    const swiperThumbnails = new Swiper.default(".product__slider-thumbnails", {
       spaceBetween: 10,
       slidesPerView: 4,
       freeMode: true,
@@ -31,6 +33,10 @@ const productSlider = () => {
 };
 
 const init = () => {
+  new Header().mount();
+  new Main().mount();
+  new Footer().mount();
+
   productSlider();
 
   const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
