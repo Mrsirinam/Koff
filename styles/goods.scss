@@ -27,6 +27,7 @@
   &__list {
     display: grid;
     gap: 50px 8px;
+		justify-content: space-evenly;
     grid-template-columns: repeat(auto-fit, 140px);
     margin-bottom: 32px;
 
