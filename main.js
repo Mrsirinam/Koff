@@ -5,6 +5,7 @@ import { Header } from "./modules/Header/Header";
 import { Main } from "./modules/Main/Main";
 import { Footer } from "./modules/Footer/Footer";
 import { ProductList } from "./modules/ProductList/productList";
+import { ApiService } from "./services/ApiServices";
 
 const productSlider = () => {
   Promise.all([
@@ -34,6 +35,8 @@ const productSlider = () => {
 };
 
 const init = () => {
+  const api = new ApiService();
+
   new Header().mount();
   new Main().mount();
   new Footer().mount();
@@ -45,8 +48,9 @@ const init = () => {
   router //отслеживаем адреса
     .on(
       "/",
-      () => {
-        new ProductList().mount(new Main().element, [1, 2, 3, 4]);
+      async () => {
+        const product = await api.getProducts();
+        new ProductList().mount(new Main().element, product);
       },
       {
         leave(done) {

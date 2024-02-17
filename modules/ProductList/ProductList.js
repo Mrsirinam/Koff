@@ -1,3 +1,4 @@
+import { API_URL } from "../../const";
 import { addContainer } from "../addContainer";
 
 export class ProductList {
@@ -55,26 +56,27 @@ export class ProductList {
     this.containerElement.append(listElem);
   }
 
-  getHTMLTemplateListItem(item) {
+  getHTMLTemplateListItem({ id, name: title, price, images: [image] }) {
     return `
 		<article class="goods__card card">
-		<a href="/product/321" class="card_link card__link_img">
-			<img src="/public/img/photo.jpg" alt="Кресло с подлокотниками" class="card__img">
+		<a href="/product/${id}" class="card_link card__link_img">
+			<img src="${API_URL}${image}" alt="${title}" class="card__img">
 		</a>
 
 		<div class="card__info">
 			<h3 class="card__title">
-				<a href="/produc/321" class="card__link">
-					Кресло с подлокотниками
+				<a href="/produc/${id}" class="card__link">
+					${title}
 				</a>
 			</h3>
 
-			<p class="card__price">5&nbsp;000&nbsp;₽</p>
+			<p class="card__price">${price.toLocaleString()}&nbsp;₽</p>
 		</div>
 
-		<button class="card__btn" type="button">В корзину</button>
+		<button class="card__btn" data-id="${id}">В корзину</button>
 
-		<button class="card__favorite" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+		<button class="card__favorite" data-id="${id}">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16"
 				height="16" viewBox="0 0 16 16" fill="none">
 				<path
 					d="M8.41331 13.8733C8.18665 13.9533 7.81331 13.9533 7.58665 13.8733C5.65331 13.2133 1.33331 10.46 1.33331 5.79332C1.33331 3.73332 2.99331 2.06665 5.03998 2.06665C6.25331 2.06665 7.32665 2.65332 7.99998 3.55998C8.67331 2.65332 9.75331 2.06665 10.96 2.06665C13.0066 2.06665 14.6666 3.73332 14.6666 5.79332C14.6666 10.46 10.3466 13.2133 8.41331 13.8733Z"
