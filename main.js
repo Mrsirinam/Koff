@@ -6,6 +6,7 @@ import { Main } from "./modules/Main/Main";
 import { Footer } from "./modules/Footer/Footer";
 import { ProductList } from "./modules/ProductList/productList";
 import { ApiService } from "./services/ApiServices";
+import { Catalog } from "./modules/Catalog/Catalog";
 
 const productSlider = () => {
   Promise.all([
@@ -41,6 +42,11 @@ const init = () => {
   new Main().mount();
   new Footer().mount();
 
+  api.getProductCategories().then((data) => {
+    new Catalog().mount(new Main().element, data);
+    router.updatePageLinks();
+  });
+
   productSlider();
 
   const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
@@ -51,10 +57,11 @@ const init = () => {
       async () => {
         const product = await api.getProducts();
         new ProductList().mount(new Main().element, product);
+        router.updatePageLinks();
       },
       {
         leave(done) {
-          console.log("leave");
+          new ProductList().unmount();
           done();
         },
         already() {
@@ -64,26 +71,28 @@ const init = () => {
     )
     .on(
       "/category",
-      () => {
-        new ProductList().mount(
-          new Main().element,
-          [1, 2, 3, 4, 5, 6],
-          "Категория"
-        );
+      async ({ params: { slug } }) => {
+        const product = await api.getProducts();
+        new ProductList().mount(new Main().element, product, slug);
+        router.updatePageLinks();
       },
       {
         leave(done) {
+          new ProductList().unmount();
           done();
         },
       }
     )
     .on(
       "/favorite",
-      () => {
-        new ProductList().mount(new Main().element, [1, 2, 3], "Избранное");
+      async () => {
+        const product = await api.getProducts();
+        new ProductList().mount(new Main().element, product, "Избранное");
+        router.updatePageLinks();
       },
       {
         leave(done) {
+          new ProductList().unmount();
           done();
         },
       }

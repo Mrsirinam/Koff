@@ -21,6 +21,7 @@ export class ApiService {
     }
   }
 
+  //функция для получения данных
   async getData(pathname, params = {}) {
     if (!this.accessKey) {
       await this.getAccessKey();
@@ -54,5 +55,13 @@ export class ApiService {
       category,
       q,
     });
+  }
+
+  async getProductCategories() {
+    return await this.getData("api/productCategories");
+  }
+
+  async getProductById(id) {
+    return await this.getData(`api/products/${id}`);
   }
 }
